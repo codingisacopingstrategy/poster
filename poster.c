@@ -612,8 +612,12 @@ static int dsc_infile( double ps_bb[4])
 			if (!strncmp( c, "(atend)", 7)) atend = 1;
 			else
 			{	/* pass this DSC to output */
-				puts( buf);
-				dsc_cont = 1;
+				/* if it is not another DocumentMedia comment */
+				if (strncmp( buf, "%%DocumentMedia", 15))
+				{
+					puts( buf);
+					dsc_cont = 1;
+				}
 			}
 		}
 	}
